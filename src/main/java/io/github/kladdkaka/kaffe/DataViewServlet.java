@@ -35,7 +35,7 @@ public class DataViewServlet extends HttpServlet {
         synchronized (roast) {
             Collection<StackNode> nodes = roast.getData().values();
             for (StackNode node : nodes) {
-                w.println(node.toHtml(roast.getMapping()));
+                w.println(node.toHtml());
             }
             if (nodes.size() == 0) {
                 w.println("<p class=\"no-results\">There are no results. " +
