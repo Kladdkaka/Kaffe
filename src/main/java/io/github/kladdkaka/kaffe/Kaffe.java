@@ -1,22 +1,4 @@
-/*
- * WarmRoast
- * Copyright (C) 2013 Albert Pham <http://www.sk89q.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
-
-package com.sk89q.warmroast;
+package io.github.kladdkaka.kaffe;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -56,7 +38,7 @@ import com.sun.tools.attach.AttachNotSupportedException;
 import com.sun.tools.attach.VirtualMachine;
 import com.sun.tools.attach.VirtualMachineDescriptor;
 
-public class WarmRoast extends TimerTask {
+public class Kaffe extends TimerTask {
 
     private static final String SEPARATOR = 
             "------------------------------------------------------------------------";
@@ -72,7 +54,7 @@ public class WarmRoast extends TimerTask {
     private String filterThread;
     private long endTime = -1;
     
-    public WarmRoast(VirtualMachine vm, int interval) {
+    public Kaffe(VirtualMachine vm, int interval) {
         this.vm = vm;
         this.interval = interval;
     }
@@ -184,7 +166,7 @@ public class WarmRoast extends TimerTask {
         context.addServlet(new ServletHolder(new DataViewServlet(this)), "/stack");
 
         ResourceHandler resources = new ResourceHandler();
-        String filesDir = WarmRoast.class.getResource("/www").toExternalForm();
+        String filesDir = Kaffe.class.getResource("/www").toExternalForm();
         resources.setResourceBase(filesDir);
         resources.setDirectoriesListed(true);
         resources.setWelcomeFiles(new String[]{ "index.html" });
@@ -201,7 +183,7 @@ public class WarmRoast extends TimerTask {
     public static void main(String[] args) throws AgentLoadException {
         RoastOptions opt = new RoastOptions();
         JCommander jc = new JCommander(opt, args);
-        jc.setProgramName("warmroast");
+        jc.setProgramName("kaffe");
         
         if (opt.help) {
             jc.usage();
@@ -209,8 +191,8 @@ public class WarmRoast extends TimerTask {
         }
 
         System.err.println(SEPARATOR);
-        System.err.println("WarmRoast");
-        System.err.println("http://github.com/sk89q/warmroast");
+        System.err.println("Kaffe");
+        System.err.println("https://github.com/Kladdkaka/Kaffe");
         System.err.println(SEPARATOR);
         System.err.println("");
         
@@ -294,7 +276,7 @@ public class WarmRoast extends TimerTask {
         
         InetSocketAddress address = new InetSocketAddress(opt.bindAddress, opt.port);
 
-        WarmRoast roast = new WarmRoast(vm, opt.interval);
+        Kaffe roast = new Kaffe(vm, opt.interval);
         if (opt.mappingsDir != null) {
             File dir = new File(opt.mappingsDir);
             File joined = new File(dir, "joined.srg");
