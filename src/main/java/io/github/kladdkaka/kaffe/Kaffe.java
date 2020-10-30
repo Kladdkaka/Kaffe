@@ -25,9 +25,11 @@ import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 
+import com.opencsv.exceptions.CsvException;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
+import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
@@ -163,18 +165,18 @@ public class Kaffe extends TimerTask {
 
         ServletContextHandler context = new ServletContextHandler();
         context.setContextPath("/");
-        context.addServlet(new ServletHolder(new DataViewServlet(this)), "/stack");
+        server.setHandler(context);
 
-        ResourceHandler resources = new ResourceHandler();
+        ServletHolder holderDataViewServlet = new ServletHolder(new DataViewServlet(this));
+        context.addServlet(holderDataViewServlet, "/stack");
+        
         String filesDir = Kaffe.class.getResource("/www").toExternalForm();
-        resources.setResourceBase(filesDir);
-        resources.setDirectoriesListed(true);
-        resources.setWelcomeFiles(new String[]{ "index.html" });
- 
-        HandlerList handlers = new HandlerList();
-        handlers.addHandler(context);
-        handlers.addHandler(resources);
-        server.setHandler(handlers);
+
+        ServletHolder holderResources = new ServletHolder(DefaultServlet.class);
+        holderResources.setInitParameter("resourceBase", filesDir);
+        holderResources.setInitParameter("dirAllowed","true");
+        holderResources.setInitParameter("pathInfoOnly","true");
+        context.addServlet(holderResources,"/*");
 
         server.start();
         server.join();
@@ -283,7 +285,7 @@ public class Kaffe extends TimerTask {
             File methods = new File(dir, "methods.csv");
             try {
                 roast.getMapping().read(joined, methods);
-            } catch (IOException e) {
+            } catch (IOException | CsvException e) {
                 System.err.println(
                         "Failed to read the mappings files (joined.srg, methods.csv) " +
                         "from " + dir.getAbsolutePath() + ": " + e.getMessage());

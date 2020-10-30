@@ -9,9 +9,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.opencsv.exceptions.CsvException;
 import org.apache.commons.io.FileUtils;
 
-import au.com.bytecode.opencsv.CSVReader;
+import com.opencsv.CSVReader;
 
 public class McpMapping {
 
@@ -28,7 +29,7 @@ public class McpMapping {
         return classes.get(obfuscated);
     }
 
-    public void read(File joinedFile, File methodsFile) throws IOException {
+    public void read(File joinedFile, File methodsFile) throws IOException, CsvException {
         try (FileReader r = new FileReader(methodsFile)) {
             try (CSVReader reader = new CSVReader(r)) {
                 List<String[]> entries = reader.readAll();
