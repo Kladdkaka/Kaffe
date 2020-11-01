@@ -24,7 +24,23 @@ public class StackNode implements Comparable<StackNode> {
     public StackNode(String name) {
         this.name = name;
     }
-    
+
+    public StackNode(String name, long totalTime) {
+        this.name = name;
+        this.totalTime = totalTime;
+    }
+
+    /**
+     * For regression testing only
+     */
+    protected StackNode(String name, long totalTime, StackNode... children) {
+        this.name = name;
+        this.totalTime = totalTime;
+        for (StackNode child : children) {
+            this.children.put(child.getName(), child);
+        }
+    }
+
     public String getName() {
         return name;
     }
@@ -60,6 +76,10 @@ public class StackNode implements Comparable<StackNode> {
     
     public long getTotalTime() {
         return totalTime;
+    }
+
+    public void setTotalTime(long totalTime) {
+        this.totalTime = totalTime;
     }
 
     public void log(long time) {

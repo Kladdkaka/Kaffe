@@ -1,0 +1,243 @@
+<div class="node collapsed">
+    <div class="name">com.android.dx.dex.code.RopTranslator.translate()
+        <span class="percent">100.00%</span>
+        <span class="time">400ms</span>
+        <span class="bar">
+            <span class="bar-inner" style="width:100%"></span>
+        </span>
+    </div>
+    <ul class="children">
+        <li>
+            <div class="node collapsed">
+                <div class="name">com.android.dx.dex.code.RopTranslator.&lt;init&gt;()
+                    <span class="percent">25.00%</span>
+                    <span class="time">100ms</span>
+                    <span class="bar">
+                        <span class="bar-inner" style="width:25%"></span>
+                    </span>
+                </div>
+                <ul class="children">
+                    <li>
+                        <div class="node collapsed">
+                            <div class="name">com.android.dx.dex.code.OutputCollector.&lt;init&gt;()
+                                <span class="percent">25.00%</span>
+                                <span class="time">100ms</span>
+                                <span class="bar">
+                                    <span class="bar-inner" style="width:25%"></span>
+                                </span>
+                            </div>
+                            <ul class="children">
+                                <li>
+                                    <div class="node collapsed">
+                                        <div class="name">com.android.dx.dex.code.OutputFinisher.&lt;init&gt;()
+                                            <span class="percent">25.00%</span>
+                                            <span class="time">100ms</span>
+                                            <span class="bar">
+                                                <span class="bar-inner" style="width:25%"></span>
+                                            </span>
+                                        </div>
+                                        <ul class="children"></ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <div class="node collapsed">
+                <div class="name">com.android.dx.dex.code.RopTranslator.translateAndGetResult()
+                    <span class="percent">75.00%</span>
+                    <span class="time">300ms</span>
+                    <span class="bar">
+                        <span class="bar-inner" style="width:75%"></span>
+                    </span>
+                </div>
+                <ul class="children">
+                    <li>
+                        <div class="node collapsed">
+                            <div class="name">com.android.dx.dex.code.RopTranslator.outputInstructions()
+                                <span class="percent">75.00%</span>
+                                <span class="time">300ms</span>
+                                <span class="bar">
+                                    <span class="bar-inner" style="width:75%"></span>
+                                </span>
+                            </div>
+                            <ul class="children">
+                                <li>
+                                    <div class="node collapsed">
+                                        <div class="name">com.android.dx.dex.code.RopTranslator.outputBlock()
+                                            <span class="percent">75.00%</span>
+                                            <span class="time">300ms</span>
+                                            <span class="bar">
+                                                <span class="bar-inner" style="width:75%"></span>
+                                            </span>
+                                        </div>
+                                        <ul class="children">
+                                            <li>
+                                                <div class="node collapsed">
+                                                    <div class="name">com.android.dx.rop.code.InsnList.forEach()
+                                                        <span class="percent">75.00%</span>
+                                                        <span class="time">300ms</span>
+                                                        <span class="bar">
+                                                            <span class="bar-inner" style="width:75%"></span>
+                                                        </span>
+                                                    </div>
+                                                    <ul class="children">
+                                                        <li>
+                                                            <div class="node collapsed">
+                                                                <div class="name">
+                                                                    com.android.dx.rop.code.PlainInsn.accept()
+                                                                    <span class="percent">75.00%</span>
+                                                                    <span class="time">300ms</span>
+                                                                    <span class="bar">
+                                                                        <span class="bar-inner"
+                                                                              style="width:75%"></span>
+                                                                    </span>
+                                                                </div>
+                                                                <ul class="children">
+                                                                    <li>
+                                                                        <div class="node collapsed">
+                                                                            <div class="name">
+                                                                                com.android.dx.dex.code.RopTranslator$LocalVariableAwareTranslationVisitor.visitPlainInsn()
+                                                                                <span class="percent">75.00%</span>
+                                                                                <span class="time">300ms</span>
+                                                                                <span class="bar">
+                                                                                    <span class="bar-inner"
+                                                                                          style="width:75%"></span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <ul class="children">
+                                                                                <li>
+                                                                                    <div class="node collapsed">
+                                                                                        <div class="name">
+                                                                                            com.android.dx.dex.code.RopTranslator$LocalVariableAwareTranslationVisitor.addIntroductionIfNecessary()
+                                                                                            <span class="percent">
+                                                                                                75.00%
+                                                                                            </span>
+                                                                                            <span class="time">300ms
+                                                                                            </span>
+                                                                                            <span class="bar">
+                                                                                                <span class="bar-inner"
+                                                                                                      style="width:75%"></span>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <ul class="children">
+                                                                                            <li>
+                                                                                                <div class="node collapsed">
+                                                                                                    <div class="name">
+                                                                                                        com.android.dx.rop.code.LocalVariableInfo.getAssignment()
+                                                                                                        <span class="percent">
+                                                                                                            75.00%
+                                                                                                        </span>
+                                                                                                        <span class="time">
+                                                                                                            300ms
+                                                                                                        </span>
+                                                                                                        <span class="bar">
+                                                                                                            <span class="bar-inner"
+                                                                                                                  style="width:75%"></span>
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <ul class="children">
+                                                                                                        <li>
+                                                                                                            <div class="node collapsed">
+                                                                                                                <div class="name">
+                                                                                                                    java.util.HashMap.get()
+                                                                                                                    <span class="percent">
+                                                                                                                        75.00%
+                                                                                                                    </span>
+                                                                                                                    <span class="time">
+                                                                                                                        300ms
+                                                                                                                    </span>
+                                                                                                                    <span class="bar">
+                                                                                                                        <span class="bar-inner"
+                                                                                                                              style="width:75%"></span>
+                                                                                                                    </span>
+                                                                                                                </div>
+                                                                                                                <ul class="children">
+                                                                                                                    <li>
+                                                                                                                        <div class="node collapsed">
+                                                                                                                            <div class="name">
+                                                                                                                                java.util.HashMap.hash()
+                                                                                                                                <span class="percent">
+                                                                                                                                    75.00%
+                                                                                                                                </span>
+                                                                                                                                <span class="time">
+                                                                                                                                    300ms
+                                                                                                                                </span>
+                                                                                                                                <span class="bar">
+                                                                                                                                    <span class="bar-inner"
+                                                                                                                                          style="width:75%"></span>
+                                                                                                                                </span>
+                                                                                                                            </div>
+                                                                                                                            <ul class="children">
+                                                                                                                                <li>
+                                                                                                                                    <div class="node collapsed">
+                                                                                                                                        <div class="name">
+                                                                                                                                            com.android.dx.rop.code.Insn.hashCode()
+                                                                                                                                            <span class="percent">
+                                                                                                                                                75.00%
+                                                                                                                                            </span>
+                                                                                                                                            <span class="time">
+                                                                                                                                                300ms
+                                                                                                                                            </span>
+                                                                                                                                            <span class="bar">
+                                                                                                                                                <span class="bar-inner"
+                                                                                                                                                      style="width:75%"></span>
+                                                                                                                                            </span>
+                                                                                                                                        </div>
+                                                                                                                                        <ul class="children">
+                                                                                                                                            <li>
+                                                                                                                                                <div class="node collapsed">
+                                                                                                                                                    <div class="name">
+                                                                                                                                                        java.lang.System.identityHashCode()
+                                                                                                                                                        <span class="percent">
+                                                                                                                                                            75.00%
+                                                                                                                                                        </span>
+                                                                                                                                                        <span class="time">
+                                                                                                                                                            300ms
+                                                                                                                                                        </span>
+                                                                                                                                                        <span class="bar">
+                                                                                                                                                            <span class="bar-inner"
+                                                                                                                                                                  style="width:75%"></span>
+                                                                                                                                                        </span>
+                                                                                                                                                    </div>
+                                                                                                                                                    <ul class="children"></ul>
+                                                                                                                                                </div>
+                                                                                                                                            </li>
+                                                                                                                                        </ul>
+                                                                                                                                    </div>
+                                                                                                                                </li>
+                                                                                                                            </ul>
+                                                                                                                        </div>
+                                                                                                                    </li>
+                                                                                                                </ul>
+                                                                                                            </div>
+                                                                                                        </li>
+                                                                                                    </ul>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>

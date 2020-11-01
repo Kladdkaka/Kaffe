@@ -8,7 +8,6 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadInfo;
 import java.lang.management.ThreadMXBean;
 import java.net.InetSocketAddress;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -25,10 +24,7 @@ import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 
-import com.opencsv.exceptions.CsvException;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.handler.HandlerList;
-import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -179,7 +175,8 @@ public class Kaffe extends TimerTask {
 
     public static void main(String[] args) throws AgentLoadException {
         RoastOptions opt = new RoastOptions();
-        JCommander jc = new JCommander(opt, args);
+        JCommander jc = new JCommander(opt);
+        jc.parse(args);
         jc.setProgramName("kaffe");
         
         if (opt.help) {
@@ -225,13 +222,7 @@ public class Kaffe extends TimerTask {
             List<VirtualMachineDescriptor> descriptors = VirtualMachine.list();
             System.err.println("Choose a VM:");
             
-            Collections.sort(descriptors, new Comparator<VirtualMachineDescriptor>() {
-                @Override
-                public int compare(VirtualMachineDescriptor o1,
-                        VirtualMachineDescriptor o2) {
-                    return o1.displayName().compareTo(o2.displayName());
-                }
-            });
+            descriptors.sort(Comparator.comparing(VirtualMachineDescriptor::displayName));
             
             // Print list of VMs
             int i = 1;
