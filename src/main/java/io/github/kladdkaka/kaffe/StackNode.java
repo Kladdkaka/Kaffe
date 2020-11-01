@@ -1,5 +1,9 @@
 package io.github.kladdkaka.kaffe;
 
+import j2html.tags.Tag;
+
+import static j2html.TagCreator.*;
+
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,10 +48,6 @@ public class StackNode implements Comparable<StackNode> {
     public String getName() {
         return name;
     }
-    
-    public String getNameHtml() {
-        return escapeHtml(getName());
-    }
 
     public Collection<StackNode> getChildren() {
         List<StackNode> list = new ArrayList<>(children.values());
@@ -78,10 +78,6 @@ public class StackNode implements Comparable<StackNode> {
         return totalTime;
     }
 
-    public void setTotalTime(long totalTime) {
-        this.totalTime = totalTime;
-    }
-
     public void log(long time) {
         totalTime += time;
     }
@@ -106,40 +102,22 @@ public class StackNode implements Comparable<StackNode> {
     public int compareTo(StackNode o) {
         return getName().compareTo(o.getName());
     }
-    
-    private void writeHtml(StringBuilder builder, long totalTime) {
-        builder.append("<div class=\"node collapsed\">");
-        builder.append("<div class=\"name\">");
-        builder.append(getNameHtml());
-        builder.append("<span class=\"percent\">");
-        builder
-                .append(String.format("%.2f", getTotalTime() / (double) totalTime * 100))
-                .append("%");
-        builder.append("</span>");
-        builder.append("<span class=\"time\">");
-        builder.append(getTotalTime()).append("ms");
-        builder.append("</span>");
-        builder.append("<span class=\"bar\">");
-        builder.append("<span class=\"bar-inner\" style=\"width:")
-                .append(formatCssPct(getTotalTime() / (double) totalTime))
-                .append("\">");
-        builder.append("</span>");
-        builder.append("</span>");
-        builder.append("</div>");
-        builder.append("<ul class=\"children\">");
-        for (StackNode child : getChildren()) {
-            builder.append("<li>");
-            child.writeHtml(builder, totalTime);
-            builder.append("</li>");
-        }
-        builder.append("</ul>");
-        builder.append("</div>");
+
+    private Tag generateHtml(long totalTime) {
+        return div(attrs(".node collapsed"),
+                div(attrs(".name"), text(getName()),
+                        span(attrs(".percent"), String.format("%.2f", getTotalTime() / (double) totalTime * 100) + "%"),
+                        span(attrs(".time"), getTotalTime() + "ms"),
+                        span(attrs(".bar"),
+                                span(attrs(".bar-inner")).withStyle("width:" + formatCssPct(getTotalTime() / (double) totalTime))
+                        )
+                ),
+                ul(attrs(".children"), each(getChildren(), child -> li(child.generateHtml(totalTime))))
+        );
     }
 
     public String toHtml() {
-        StringBuilder builder = new StringBuilder();
-        writeHtml(builder, getTotalTime());
-        return builder.toString();
+        return generateHtml(getTotalTime()).render();
     }
     
     private void writeString(StringBuilder builder, int indent) {
@@ -167,10 +145,6 @@ public class StackNode implements Comparable<StackNode> {
     
     protected static String formatCssPct(double pct) {
         return cssDec.format(pct);
-    }
-    
-    protected static String escapeHtml(String str) {
-        return str.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
     }
 
 }

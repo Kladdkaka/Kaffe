@@ -18,11 +18,6 @@ public class StackTraceNode extends StackNode {
     public String getMethodName() {
         return methodName;
     }
-    
-    @Override
-    public String getNameHtml() {
-        return escapeHtml(getClassName()) + "." + escapeHtml(getMethodName()) + "()";
-    }
 
     @Override
     public int compareTo(StackNode o) {
